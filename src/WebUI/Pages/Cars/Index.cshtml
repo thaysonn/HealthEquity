@@ -1,0 +1,47 @@
+﻿@page
+@model WebUI.Pages.Cars.IndexModel
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Doors</th>
+            <th>Color</th> 
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cars)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Make</td>
+                <td>@item.Model</td>
+                <td>@item.Year</td>
+                <td>@item.Doors</td>
+                <td>@item.Color</td> 
+                <td>
+                    <a class="btn btn-info mr-2" asp-page="./CreateOrEdit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-warning" asp-page="./Delete" asp-route-id="@item.Id">Remove</a>
+                    <a class="btn btn-dark" asp-page="./GuessPrice" asp-route-id="@item.Id">Guess Price</a>
+                </td>
+            </tr>
+        }
+        @if (!Model.Cars.Any())
+        {
+            <tr>
+                <td colspan="7">
+                    <p style="text-align: center">No record found</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <a class="btn btn-primary" asp-page="./CreateOrEdit" asp-route-id="0">New Car</a>
+</div> 

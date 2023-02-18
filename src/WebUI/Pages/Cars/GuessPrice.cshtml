@@ -1,0 +1,47 @@
+﻿@page
+@model WebUI.Pages.Cars.GuessPriceModel
+@{
+}
+
+<div class="row">
+    <h4>What is the car price?</h4>
+    <p>
+        <b>Make: </b>
+        @Html.DisplayFor(model => model.Car.Make)
+    </p>
+    <p>
+        <b>Model: </b>
+        @Html.DisplayFor(model => model.Car.Model)
+    </p>
+    <p>
+        <b>Year: </b>
+        @Html.DisplayFor(model => model.Car.Year)
+    </p>
+    <p>
+        <b>Doors: </b>
+        @Html.DisplayFor(model => model.Car.Doors)
+    </p>
+    <p>
+        <b>Color: </b>
+        @Html.DisplayFor(model => model.Car.Color)
+    </p>
+</div>
+@if (Model.Result)
+{
+    <div class="alert alert-success" role="alert">
+        Great job!!!
+    </div>
+}
+<div class="row">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Car.Id" />
+        <div class="form-group">
+            <label asp-for="GuessPrice" class="control-label"></label>
+            <input asp-for="GuessPrice" class="form-control" />
+            <span asp-validation-for="GuessPrice" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-default" asp-page="./Index">Back</a>
+    </form>
+</div>
